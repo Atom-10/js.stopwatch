@@ -1,0 +1,17 @@
+#time {
+  font-size: 50px;
+  margin-left: 40px;
+}
+
+button {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 40px;
+}
+
+#start.reStart {
+  font-size: 100%;
+  padding: 13px 20px;
+  vertical-align: top;
+}
