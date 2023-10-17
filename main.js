@@ -4,22 +4,20 @@ const stop = document.getElementById("stop");
 const reset = document.getElementById("reset");
 
 let timer;
-let elapsedMs = 100;
-// デバッグ用
-// let elapsedMs = 995000;
+let elapsedMs = 0;
 
 function timeToString(countMs) {
-  const first = Math.floor(countMs / 100) % 10;
-  const second = Math.floor(countMs / 1000) % 10;
-  const third = Math.floor(countMs / 10000) % 10;
-  const fourth = Math.floor(countMs / 100000) % 10;
+  const ms = Math.floor(countMs / 10) % 100;
+  const s = Math.floor(countMs / 1000) % 60;
+  const m = Math.floor(countMs / 1000 / 60) % 60;
+  const h = Math.floor(countMs / 1000 / 3600) % 100;
 
-  const formattedFirst = first.toString().padStart(1, 0);
-  const formattedSecond = second.toString().padStart(1, 0);
-  const formattedThird = third.toString().padStart(1, 0);
-  const formattedFourth = fourth.toString().padStart(1, 0);
+  const formattedMs = ms.toString().padStart(2, 0);
+  const formattedS = s.toString().padStart(2, 0);
+  const formattedM = m.toString().padStart(2, 0);
+  const formattedH = h.toString().padStart(2, 0);
 
-  return `${formattedFourth}:${formattedThird}:${formattedSecond}:${formattedFirst}`;
+  return `${formattedH}:${formattedM}:${formattedS}:${formattedMs}`;
 }
 
 start.addEventListener("click", () => {
@@ -51,12 +49,12 @@ start.addEventListener("click", () => {
       document.getElementById("reset").disabled = true;
       clearInterval(timer);
       elapsedMs = 0;
-      time.textContent = `0:0:0:0`;
+      time.textContent = `00:00:00:00`;
       start.textContent = "スタート";
       start.classList.remove("reStart");
     });
 
-    if (time.textContent === `9:9:9:9`) {
+    if (time.textContent === `99:59:59:99`) {
       clearInterval(timer);
     }
   }, 10);
